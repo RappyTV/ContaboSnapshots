@@ -1,6 +1,8 @@
 {
+    "instance": "",
     "clientId": "",
     "clientSecret": "",
     "username": "",
-    "password": ""
+    "password": "",
+    "maxSnapshots": 3
 }
