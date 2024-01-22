@@ -27,6 +27,7 @@ const auth = {
         const created = await createSnapshot();
         if(created) console.log(`Created snapshot ${created?.snapshotId}`);
     }, null, true, `Europe/Berlin`);
+    console.log(`CronJob was loaded!`);
 })();
 
 async function obtainToken() {
@@ -47,6 +48,7 @@ async function obtainToken() {
         auth.refresh = res.data.refresh_token;
         auth.expires = Date.now() + (res.data.expires_in * 1000);
         auth.refetch = Date.now() + (res.data.refresh_expires_in * 1000);
+        console.log(`New token obtained!`);
     } catch(err) {
         console.log(`Failed to obtain token: ${JSON.stringify(err.response?.data)}`);
         return null;
@@ -70,6 +72,7 @@ async function refreshToken() {
         auth.refresh = res.data.refresh_token;
         auth.expires = Date.now() + (res.data.expires_in * 1000);
         auth.refetch = Date.now() + (res.data.refresh_expires_in * 1000);
+        console.log(`Token refreshed!`);
     } catch(err) {
         console.log(`Failed to refresh token: ${JSON.stringify(err.response?.data)}`);
         return null;
