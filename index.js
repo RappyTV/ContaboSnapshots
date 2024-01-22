@@ -23,11 +23,10 @@ const auth = {
             const deleted = await deleteSnapshot(snapshotToDelete?.snapshotId);
             if(deleted) console.log(`Deleted snapshot ${snapshotToDelete?.snapshotId}`);
         } else console.log(`There are no snapshots to delete!`);
-        
 
         const created = await createSnapshot();
         if(created) console.log(`Created snapshot ${created?.snapshotId}`);
-    }, null, true, `Europe/Berlin`, null, true);
+    }, null, true, `Europe/Berlin`);
 })();
 
 async function obtainToken() {
