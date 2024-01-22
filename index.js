@@ -3,6 +3,20 @@ const { CronJob } = require(`cron`);
 const { v4 } = require(`uuid`);
 const cfg = require(`./config.json`);
 
+/**
+ * @typedef {object} Snapshot
+ * @property {string} tenantId 
+ * @property {string} customerId 
+ * @property {string} snapshotId 
+ * @property {string} name
+ * @property {string} description 
+ * @property {string} instanceId 
+ * @property {string} createdDate 
+ * @property {string} autoDeleteDate 
+ * @property {string} imageId 
+ * @property {string} imageName 
+ */
+
 const auth = {
     access: null,
     refresh: null,
@@ -30,6 +44,11 @@ const auth = {
     console.log(`CronJob was loaded!`);
 })();
 
+/**
+ * 
+ * @returns {Promise<void>}
+ */
+
 async function obtainToken() {
     try {
         const res = await axios.post(`https://auth.contabo.com/auth/realms/contabo/protocol/openid-connect/token`, {
@@ -55,6 +74,11 @@ async function obtainToken() {
     }
 }
 
+/**
+ * 
+ * @returns {Promise<void>}
+ */
+
 async function refreshToken() {
     try {
         const res = await axios.post(`https://auth.contabo.com/auth/realms/contabo/protocol/openid-connect/token`, {
@@ -78,6 +102,11 @@ async function refreshToken() {
         return null;
     }
 }
+
+/**
+ * 
+ * @returns {Promise<Snapshot|null>}
+ */
 
 async function createSnapshot() {
     try {
@@ -123,6 +152,11 @@ async function deleteSnapshot(id) {
         return null;
     }
 }
+
+/**
+ * 
+ * @returns {Promise<Snapshot[]>}
+ */
 
 async function listSnapshots() {
     try {
